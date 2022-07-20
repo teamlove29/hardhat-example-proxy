@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Box.sol": {
+      "content": "// contracts/Box.sol\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.2;\n \ncontract Box {\n    uint256 private value;\n \n    // Emitted when the stored value changes\n    event ValueChanged(uint256 newValue);\n \n    // Stores a new value in the contract\n    function store(uint256 newValue) public {\n        value = newValue;\n        emit ValueChanged(newValue);\n    }\n \n    // Reads the last stored value\n    function retrieve() public view returns (uint256) {\n        return value;\n    }\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "storageLayout",
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
