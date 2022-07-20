@@ -12,6 +12,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   log('----------------------------------------------------')
 
   const name: { [key: string]: any } = {}
+  const proxyAddress = await get('Box_Proxy')
 
   const deploymentName = 'BoxV2'
   const Box = await deploy(deploymentName, {
@@ -32,7 +33,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   if (Box.newlyDeployed) {
     try {
-      await execute('BoxV1', { from: deployer, log: true }, 'upgradeTo', Box.address)
+      await execute('DefaultProxyAdmin', { from: deployer, log: true }, 'upgrade', proxyAddress.address,Box.address)
       await hre.run('verify:verify', {
         address: Box.address,
       })

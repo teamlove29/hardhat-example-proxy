@@ -17,9 +17,9 @@ import '@tenderly/hardhat-tenderly'
 
 dotenv.config()
 
-const API_URL = ''
+const API_URL = process.env.INFURA_PROJECT_ID
 const PRIVATE_KEY = ''
-const ETHERSCAN_KEY = ''
+const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY
 
 const config: HardhatUserConfig = {
   solidity: {

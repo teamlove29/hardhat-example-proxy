@@ -16,16 +16,19 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   //   name[`name`] = 'MockToken'
   // args: Object.values(name),
 
-  const deploymentName = 'BoxV1'
+  const deploymentName = 'Box'
   const Box = await deploy(deploymentName, {
     contract: 'Box',
-    proxy: true,
+    proxy: {
+      owner: deployer,
+      proxyContract:'OpenZeppelinTransparentProxy',
+    },
     from: deployer,
     log: true,
-    skipIfAlreadyDeployed: true,
+    // skipIfAlreadyDeployed: true,
   })
 
-  log(`You have deployed an Box contract to ${Box.address}`)
+  log(`You have deployed an contract to ${Box.address}`)
 
   log(`Could be found at ....`)
   log(chalk.yellow(`/deployments/${network.name}/${deploymentName}.json`))
