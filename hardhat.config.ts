@@ -17,8 +17,8 @@ import '@tenderly/hardhat-tenderly'
 
 dotenv.config()
 
-const API_URL = process.env.INFURA_PROJECT_ID
-const PRIVATE_KEY = ''
+const API_URL = process.env.INFURA_URL
+const PRIVATE_KEY = process.env.PRIVATE_KEY
 const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY
 
 const config: HardhatUserConfig = {
@@ -96,7 +96,6 @@ const config: HardhatUserConfig = {
   networks: {
     rinkeby: {
       url: API_URL,
-      // accounts: [`0x${PRIVATE_KEY}`],
       accounts: process.env.MNEMONIC
         ? { mnemonic: process.env.MNEMONIC }
         : [`0x${PRIVATE_KEY}`],
